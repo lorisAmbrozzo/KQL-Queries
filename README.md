@@ -1,1 +1,1 @@
-# KQL-Queries for Microsoft 365 Defender and Microsoft Sentinel
+# KQL-Queries for Microsoft 365 XDR and Microsoft Sentinel
