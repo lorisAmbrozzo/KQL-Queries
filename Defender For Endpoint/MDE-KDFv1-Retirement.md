@@ -1,6 +1,6 @@
 # MDE-KDFv1-Retirement
 
-Query to find Windows 10 / 11 hybrid joined or joined devices without security updates after July 2021. 
+KQL Query to list devices which are still using the KDFv1 algorithm to store the Primary Refresh Token which was addressed in CVE-2021-33781. Unpatched devices using the KDFv1 algorithm will no longer be able to sign in to Entra ID. 
 
 Based on Microsoft Entra news from June 2024, users of Windows devices that haven't been patched since July 2021 may experience login failures with their Entra ID user accounts on an Entra joined or hybrid joined Windows device because the KDFv1 algorithm will be retired. With the patch after July 2021, Windows clients will use the stronger KDFv2 algorithm.
 
