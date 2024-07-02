@@ -13,7 +13,7 @@ DeviceTvmSoftwareVulnerabilities
         | summarize arg_max(Timestamp, *) by DeviceId
         )
     on $left.DeviceId == $right.DeviceId
-| where SoftwareName in("windows_10","windows_11") and JoinType in("Hybrid Azure AD Join","AAD Joined")
+| where SoftwareName in~("windows_10","windows_11") and JoinType in~("Hybrid Azure AD Join","AAD Joined")
 | project DeviceId,DeviceName, OSPlatform, OSVersion, OSVersionInfo, SoftwareVendor, SoftwareVersion, CveId, VulnerabilitySeverityLevel, RecommendedSecurityUpdate, RecommendedSecurityUpdateId, JoinType, MachineGroup, LoggedOnUsers, OnboardingStatus
 ```
 ## References
