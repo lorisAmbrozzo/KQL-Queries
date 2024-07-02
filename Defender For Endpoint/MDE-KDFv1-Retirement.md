@@ -2,7 +2,7 @@
 
 Query to find Windows 10 / 11 hybrid joined or joined devices without security updates after July 2021. 
 
-Based on Microsoft Entra news from June 2024, users of Windows devices that haven't been patched since July 2021 may experience login failures with their Entra ID user accounts on an Entra joined or hybrid joined Windows device because the KDFv1 algorithms will be retired. With the patch after July 2021, Windows clients will use the stronger KDFv2 algorithm.
+Based on Microsoft Entra news from June 2024, users of Windows devices that haven't been patched since July 2021 may experience login failures with their Entra ID user accounts on an Entra joined or hybrid joined Windows device because the KDFv1 algorithm will be retired. With the patch after July 2021, Windows clients will use the stronger KDFv2 algorithm.
 
 ## Microsoft Defender XDR
 
