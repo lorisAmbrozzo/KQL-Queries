@@ -1,5 +1,5 @@
 # KQL-Queries for Microsoft 365 XDR and Microsoft Sentinel
-Hunting and detection queries repository for Microsoft Sentinel and Microsoft Defender XDR. This repository contains queries for the following products:
+Hunting and detection queries repository for Microsoft Sentinel and Microsoft Defender XDR. This repository contains (or will contain) queries for the following products:
 
 - Microsoft Defender for Endpoint
 - Microsoft Defender for Office 365
