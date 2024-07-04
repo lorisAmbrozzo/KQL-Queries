@@ -9,7 +9,7 @@ Based on Microsoft Entra news from June 2024, users of Windows devices that have
 ```kql
 DeviceTvmSoftwareVulnerabilities 
 | where CveId == "CVE-2021-33781"
-| join (DeviceInfo
+| join kind = inner (DeviceInfo
         | summarize arg_max(Timestamp, *) by DeviceId
         )
     on $left.DeviceId == $right.DeviceId
