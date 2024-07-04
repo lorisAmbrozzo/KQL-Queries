@@ -22,7 +22,7 @@ DeviceTvmSoftwareVulnerabilities
     SoftwareVendor,
     SoftwareVersion,
     CveId,
-    VulnerabilitySeverityLevel
+    VulnerabilitySeverityLevel,
     RecommendedSecurityUpdate, 
     RecommendedSecurityUpdateId,
     JoinType,
