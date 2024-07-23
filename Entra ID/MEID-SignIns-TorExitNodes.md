@@ -8,6 +8,7 @@ This query can be used to check how many login attempts are coming from Tor exit
 let TorExitNodes = externaldata (IPAddress: string) ['https://check.torproject.org/torbulkexitlist'] with (format=txt);
 union SigninLogs, AADNonInteractiveUserSignInLogs
 | where TimeGenerated > ago(90d)
+//| where ResultType == 0 //See all successfull Logons
 | where IPAddress has_any (TorExitNodes)
 | project
     TimeGenerated,
