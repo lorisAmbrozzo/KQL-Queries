@@ -19,7 +19,11 @@ union SigninLogs, AADNonInteractiveUserSignInLogs
     AppDisplayName,
     IPAddress,
     AuthenticationRequirement,
-    RiskLevelDuringSignIn
+    RiskDetail,
+    RiskState,
+    RiskLevelAggregated,
+    RiskLevelDuringSignIn, 
+    RiskEventTypes_V2
 ```
 
 ## References
