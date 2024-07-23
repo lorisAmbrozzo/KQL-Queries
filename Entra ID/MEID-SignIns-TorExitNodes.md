@@ -9,7 +9,7 @@ let TorExitNodes = externaldata (IPAddress: string) ['https://check.torproject.o
 union SigninLogs, AADNonInteractiveUserSignInLogs
 | where TimeGenerated > ago(90d)
 //| where ResultType == 0 //See all successfull Logons
-| where IPAddress has_any (TorExitNodes)
+| lookup kind = inner TorExitNodes on $left.IPAddress == $right.IPAddress
 | project
     TimeGenerated,
     Category,
