@@ -1,5 +1,5 @@
 # MDE-DefaultLocalAdmin-Logon
-This KQL query identifies logon events for the default local administrator (.\Administrator) with SIDs starting with S-1-5 and ending with 500 (according well-know SIDs). As the default domain administrator also starts with S-1-5 and ends with -500, the query includes a table containing the default domain administrator's SID of the domain to exclude these logons.
+This KQL query identifies logon events for the default local administrator (.\Administrator) with SID starting with S-1-5 and ending with 500 (according well-know SIDs). As the default domain administrator also starts with S-1-5 and ends with -500, the query includes a table containing the default domain administrator's SID of the domain to exclude these logons.
 
 The following logon types exists:
 
