@@ -27,7 +27,7 @@ DeviceLogonEvents
     | summarize arg_max(Timestamp, *) by DeviceId
     )
     on $left.DeviceId == $right.DeviceId
-| where AccountSid !in~(DefauldDomainAdministrators) //Comment this line if you also want to see domain administrator logins
+| where AccountSid !in~(DefauldDomainAdministrators) //Comment this line if you also want to see default domain administrator logins
 | summarize count()
     by
     DeviceName,
@@ -53,7 +53,7 @@ DeviceLogonEvents
     | summarize arg_max(TimeGenerated, *) by DeviceId
     )
     on $left.DeviceId == $right.DeviceId
-| where AccountSid !in~(DefauldDomainAdministrators) //Comment this line if you also want to see domain administrator logins
+| where AccountSid !in~(DefauldDomainAdministrators) //Comment this line if you also want to see default domain administrator logins
 | summarize count()
     by
     DeviceName,
