@@ -3,7 +3,7 @@ As a Global Administrator, it is possible to access all subscriptions and manage
 
 Elevated Access can be enabled within the Entra Portal :
 
-![](/KQL-Queries/Media//MEID-ElevateAccessEvents.png)
+![](https://raw.githubusercontent.com/lorisAmbrozzo/KQL-Queries/refs/heads/main/Media/MEID-ElevateAccessEvents.png?raw=true)
 
 
 ## Microsoft Sentinel
