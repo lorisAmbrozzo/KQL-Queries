@@ -12,9 +12,14 @@ AuditLogs
 | where Category == "AzureRBACRoleManagementElevateAccess"
 //| where OperationName == "User has elevated their access to User Access Administrator for their Azure Resources" //Uncomment if you only want to detect Elevate Access activation
 //| where OperationName == "The role assignment of User Access Administrator has been removed from the user" //Uncomment if you only want to detect Elevate Access deactivation
-| extend InvolvedIPAddress = tostring(parse_json(tostring(InitiatedBy.user)).userPrincipalName)
-| extend IPAddress = tostring(parse_json(tostring(InitiatedBy.user)).ipAddress)
-| project TimeGenerated, Category, OperationName, InvolvedUser, InvolvedIPAddress
+| extend InvolvedUser = tostring(parse_json(tostring(InitiatedBy.user)).userPrincipalName)
+| extend InvolvedIPAddress = tostring(parse_json(tostring(InitiatedBy.user)).ipAddress)
+| project 
+    TimeGenerated,
+    Category,
+    OperationName,
+    InvolvedUser,
+    InvolvedIPAddress
 ```
 
 ## References
