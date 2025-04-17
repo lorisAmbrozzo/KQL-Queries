@@ -1,7 +1,7 @@
 # MEID-AttackDisruption-Actions
 The Enterprise Application **Microsoft Defender for Identity (formerly known as Radius Aad Syncer)** with the App ID _60ca1954-583c-4d1f-86de-39d835f3e452_ is responsible for executing Microsoft Defender XDR Attack Disruption actions in Entra ID. The  KQL query lists each triggered Defender XDR Attack Disruption action in Entra ID performed by this service principal.
 
-To use the query, insert the **Service Principal Object ID** from the Application with the App ID _60ca1954-583c-4d1f-86de-39d835f3e452_.
+To use the query, insert the **Service Principal Object ID** from the Enterprise Application with the App ID _60ca1954-583c-4d1f-86de-39d835f3e452_.
 
 ## Microsoft Sentinel
 ```kql
