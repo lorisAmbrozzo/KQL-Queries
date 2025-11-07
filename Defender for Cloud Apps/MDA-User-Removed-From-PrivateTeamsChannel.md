@@ -16,11 +16,11 @@ CloudAppEvents
 | where Timestamp > ago(lookBackTime)
 | where Application == "Microsoft Teams"
 | where ActionType == actionFilter
-| extend Workload = tostring(RawEventData.Workload)
-| extend TeamsChannelName = tostring(RawEventData.ItemName)
-| extend TeamsName = tostring(RawEventData.TeamName)
+| extend Workload = RawEventData.Workload
+| extend TeamsChannelName = RawEventData.ItemName
+| extend TeamsName = RawEventData.TeamName
 | mv-expand Members = RawEventData.Members
-| extend TeamsMember = tostring(Members.UPN)
+| extend TeamsMember = Members.UPN
 | extend ChannelType = RawEventData.ChannelType
 | where TeamsMember == affectedUser
 | where ChannelType == "Private"
