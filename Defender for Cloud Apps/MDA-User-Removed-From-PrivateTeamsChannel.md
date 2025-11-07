@@ -9,9 +9,9 @@ This KQL query will list all the private channels from which the user was remove
 
 ## Microsoft Defender XDR
 ```kql
-let affectedUser = "INSERT UPN"; 
+let affectedUser = "INSERT UPN"; //Update UPN
 let actionFilter = "MemberRemoved"; 
-let lookBackTime = 8h;
+let lookBackTime = 8h; //Update look back time
 CloudAppEvents
 | where Timestamp > ago(lookBackTime)
 | where Application == "Microsoft Teams"
