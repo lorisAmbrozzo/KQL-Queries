@@ -1,8 +1,8 @@
 # MDA-User-Removed-From-PrivateTeamsChannel
-In the event of an incident response, one possibility is to disable a user account in Entra ID/Active Directory to stop an ongoing attack. Microsoft Defender XDR Attack Disruption also automatically disables user accounts in the event of an active attack. By design, disabling the user account automatically removes the account from all Microsoft Teams. However, even after the account is re-enabled, it is possible that the user will not see the teams they were previously a member of.
+In the event of an incident response case, one possibility is to disable a user account in Entra ID/Active Directory to stop an ongoing attack. Microsoft Defender XDR Attack Disruption also automatically disables user accounts in the event of an active attack. By design, disabling the user account automatically removes the account from all Microsoft Teams. However, even after the account is re-enabled, it is possible that the user will not see the teams they were previously a member of.
 
-- Standard Channels: It can take up to 24–48 hours for the account memberships to be automatically restored for standard channels.
-- Private Channels: For private channels, the user will not be automatically added to the private channel again. They must make new membership requests for each private channel that they want to rejoin.
+- **Standard Channels**: It can take up to 24–48 hours for the account memberships to be automatically restored for standard channels.
+- **Private Channels**: For private channels, the user will not be automatically added to the private channel again. They must make new membership requests for each private channel that they want to rejoin.
 
 This KQL query will list all the private channels from which the user was removed by querying the Cloud App Events table.
 
