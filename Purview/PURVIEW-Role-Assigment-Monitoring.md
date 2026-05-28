@@ -47,6 +47,26 @@ CloudAppEvents
 | order by Timestamp desc
 ```
 
+## Monitoring role assigment changes via GUI (eDiscovery Adminsitrator Role)
+
+```kql
+CloudAppEvents
+| where Timestamp > ago(2h)
+| where ActionType == "CaseAdminUpdated"
+| extend Raw = todynamic(RawEventData)
+| extend Actor = tostring(Raw.UserId)
+| extend EP = parse_json(tostring(Raw.ExtendedProperties))
+| mv-apply Item = EP on (
+    summarize Props = make_bag(pack(tostring(Item.Name), tostring(Item.Value)))
+)
+| extend
+    CaseAdminsSmtp = tostring(Props.CaseAdminsSmtp),
+    CaseAdminsGuid = tostring(Props.CaseAdminsGuid)
+| project Timestamp, ActionType, Actor, CaseAdminsSmtp, CaseAdminsGuid
+| order by Timestamp desc
+```
+
+
 ## Monitoring role assignments via Microsoft Purview (Security & Compliance) PowerShell endpoint
 
 ```kql
