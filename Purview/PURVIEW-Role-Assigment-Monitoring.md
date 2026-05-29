@@ -9,7 +9,7 @@ There are two ways to modify role assignments for Purview roles:
 
 This is why two types of query are required to detect role changes.
 
-## Monitoring role assignments changes via GUI 
+## Monitoring role assignments changes via GUI
 ```kql
 let lookbackAccounts = 30d;
 let lookbackEvents = 2h;
@@ -34,20 +34,20 @@ CloudAppEvents
 | extend p = todynamic(PermissionJson)
 | extend
     Target = tostring(p.MemberDetail.MemberName),
-    PurviewRoleGroupName = tostring(p.RoleGroupDetail.RoleGroupName)
+    PurviewRoleName = tostring(p.RoleGroupDetail.RoleGroupName)
 | lookup kind=leftouter Accounts on $left.ActorId == $right.SourceProviderAccountId
-| summarize arg_max(Timestamp, *) by ActionType, ActorId, Target, PurviewRoleGroupName
+| extend Operation = iff(ActionType == "GrantPermissionsAsync", "Role Added", "Role Removed")
+| summarize arg_max(Timestamp, *) by Operation, ActorId, Target, PurviewRoleName
 | project
     Timestamp,
-    ActorId,
     Actor = coalesce(AccountUpn, ActorId),
     Target,
-    ActionType,
-    PurviewRoleGroupName
+    Operation,
+    PurviewRoleName
 | order by Timestamp desc
 ```
 
-## Monitoring role assigment changes via GUI (eDiscovery Adminsitrator Role)
+## Monitoring role assignment changes via GUI (eDiscovery Administrator Role)
 
 ```kql
 CloudAppEvents
@@ -58,16 +58,17 @@ CloudAppEvents
 | extend EP = parse_json(tostring(Raw.ExtendedProperties))
 | mv-apply Item = EP on (
     summarize Props = make_bag(pack(tostring(Item.Name), tostring(Item.Value)))
-)
+    )
 | extend
-    CaseAdminsSmtp = tostring(Props.CaseAdminsSmtp),
-    CaseAdminsGuid = tostring(Props.CaseAdminsGuid)
-| project Timestamp, ActionType, Actor, CaseAdminsSmtp, CaseAdminsGuid
+    Target = tostring(Props.CaseAdminsSmtp)
+| extend Operation = ActionType
+| extend PurviewRoleName = 'eDiscovery Administrator'
+| project Timestamp, Actor, Target, Operation, PurviewRoleName
 | order by Timestamp desc
 ```
 
 
-## Monitoring role assignments via Microsoft Purview (Security & Compliance) PowerShell endpoint
+## Monitoring role assignments via Microsoft Purview (Security & Compliance) endpoint
 
 ```kql
 let lookbackAccounts = 30d;
@@ -97,17 +98,16 @@ CloudAppEvents
 | extend Target = replace_regex(MemberPart, @"(?i)^-member\s+", "")
 | extend Target = replace_regex(Target, @"(?i)\s+-confirm\s+.*$", "")
 | extend Target = trim(@" """, Target)
-| extend PurviewRole = extract(@"(?i)-identity\s+(\S+)", 1, ParameterRaw)
-| where isnotempty(Target) and isnotempty(PurviewRole)
+| extend PurviewRoleName = extract(@"(?i)-identity\s+(\S+)", 1, ParameterRaw)
 | lookup kind=leftouter Accounts on $left.ActorId == $right.SourceProviderAccountId
 | extend Actor = coalesce(AccountUpn, ActorName, ActorId)
-| extend Operation = iff(ActionType == "Add-RoleGroupMember", "Added", "Removed")
+| extend Operation = iff(ActionType == "Add-RoleGroupMember", "Role Added", "Role Removed")
 | project
     Timestamp,
-    ActionType,
     Actor,
     Target,
-    PurviewRole
+    Operation,
+    PurviewRoleName
 | order by Timestamp desc
 ```` 
 
