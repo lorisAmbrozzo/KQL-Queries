@@ -7,6 +7,7 @@ Hunting and detection queries repository. This repository contains (or will cont
 - Microsoft Defender for Cloud Apps
 - Microsoft Sentinel
 - Microsoft Entra
+- Microsoft Purview
 
 > [!NOTE]
 > All queries are based on my own experience and  research without any guarantee. 
